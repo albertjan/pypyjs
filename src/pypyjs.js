@@ -521,6 +521,7 @@ except Exception:
   js.globals['pypyjs']._lastErrorMessage = err_msg
   js.globals['pypyjs']._lastErrorTrace = err_trace
 `;
+    console.log('executing: ' + _code);
     const code_chars = Module.intArrayFromString(_code);
     code_ptr = Module.allocate(code_chars, 'i8', Module.ALLOC_NORMAL);
     if (!code_ptr) {
@@ -1010,7 +1011,7 @@ pypyjs.prototype._writeModuleFile = function _writeModuleFile(name, data) {
     this.FS.unlink(fullpath);
   } catch (e) {
     // ignore error
-    if (e) {
+    if (!e.errno === 2) {
       console.log(e);
     }
   }
