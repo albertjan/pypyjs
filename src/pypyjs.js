@@ -377,7 +377,7 @@ function pypyjs(opts) {
           'import traceback',
           'import types',
           'top_level_scope = {\'__name__\': \'__main__\', \'__package__\': None}',
-          'main = types.ModuleType('__main__')',
+          'main = types.ModuleType(\'__main__\')',
           'main.__dict__.update(top_level_scope)',
           'sys.modules[\'__main__\'] = main',
           'top_level_scope = main',
@@ -1073,7 +1073,7 @@ PUBLIC_NAMES.forEach((name) => {
 // For nodejs, run a repl when invoked directly from the command-line.
 if (typeof require !== 'undefined' && typeof module !== 'undefined') {
   if (require.main === module) {
-    pypyjs.repl().catch(function (err) {
+    pypyjs.repl().catch((err) => {
       console.log(err)
     });
   }
