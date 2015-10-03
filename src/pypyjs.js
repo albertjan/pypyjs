@@ -824,7 +824,7 @@ pypyjs.prototype.repl = function repl(prmpt) {
   return this._ready
     .then(() => this.loadModuleData('code'))
     .then(() => this._execute_source('import code'))
-    .then(() => this._execute_source('c = code.InteractiveConsole(top_level_scope)'))
+    .then(() => this._execute_source('c = code.InteractiveConsole(top_level_scope.__dict__)'))
     .then(() => this._repl_loop(_prmpt, '>>> '));
 };
 
